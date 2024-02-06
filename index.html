@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="css/calc.css">
+</head>
+
+<body>
+    <main>
+        <div class="iphone">
+            <div class="screen">
+                <div class="content">
+                    <h1>CALCULATOR</h1>
+                    <div id="calculator">
+                        <div id="display"></div>
+                        <div id="buttons">
+                            <button>7</button>
+                            <button>8</button>
+                            <button>9</button>
+                            <button class="operator">/</button>
+
+                            <button>4</button>
+                            <button>5</button>
+                            <button>6</button>
+                            <button class="operator">*</button>
+
+                            <button>1</button>
+                            <button>2</button>
+                            <button>3</button>
+                            <button class="operator">-</button>
+
+                            <button class="double">0</button>
+                            <button>.</button>
+                            <button class="operator">+</button>
+                            <button class="operator double" onclick="calculate()">=</button>
+                            <button class="double" onclick="clearDisplay()"></button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+    <script>
+        let display = document.getElementById('display');
+        let buttons = document.querySelectorAll('#buttons button');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', addToDisplay);
+        });
+
+        function addToDisplay(e) {
+            let buttonValue = e.target.innerText;
+
+            if (buttonValue === '=') {
+                calculate();
+            } else {
+                display.innerText += buttonValue;
+            }
+        }
+
+        function calculate() {
+            try {
+                display.innerText = eval(display.innerText);
+            } catch (error) {
+                display.innerText = 'Error';
+            }
+        }
+
+        function clearDisplay() {
+            display.innerText = '';
+        }
+    </script>
+</body>
+
+</html>
